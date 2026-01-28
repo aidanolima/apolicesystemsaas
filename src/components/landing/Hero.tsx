@@ -71,28 +71,6 @@ const Hero = () => {
             </Button>
           </div>
 
-          {/* Social Proof */}
-          <div className="mt-12 pt-8 border-t border-border/50">
-            <p className="text-sm text-muted-foreground mb-4">
-              Confiado por mais de 500+ corretores em todo Brasil
-            </p>
-            <div className="flex items-center gap-8">
-              <div className="text-center">
-                <p className="text-2xl font-bold text-foreground">10k+</p>
-                <p className="text-xs text-muted-foreground">Apólices gerenciadas</p>
-              </div>
-              <div className="w-px h-10 bg-border" />
-              <div className="text-center">
-                <p className="text-2xl font-bold text-foreground">99.9%</p>
-                <p className="text-xs text-muted-foreground">Uptime garantido</p>
-              </div>
-              <div className="w-px h-10 bg-border" />
-              <div className="text-center">
-                <p className="text-2xl font-bold text-foreground">24/7</p>
-                <p className="text-xs text-muted-foreground">Suporte técnico</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </section>
