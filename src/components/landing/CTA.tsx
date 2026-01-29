@@ -8,7 +8,7 @@ const CTA = () => {
   const whatsappLink = "https://wa.me/5581999207087?text=Olá! Gostaria de saber mais sobre o Apólice System.";
   
   // Link da sua agenda do Google
-  const googleCalendarUrl = "https://calendar.app.google/ZJA5AViEVNkUdrzM7";
+  const googleCalendarUrl = "https://calendar.app.google/nYGRTAwM3WYL7n2T8";
 
   const handleWhatsAppClick = () => {
     window.open(whatsappLink, "_blank");

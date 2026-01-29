@@ -4,7 +4,7 @@ import { X } from "lucide-react"; // Usando lucide para manter o padrão do seu 
 const DemoModal = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const googleCalendarUrl = "https://calendar.app.google/ZJA5AViEVNkUdrzM7";
+  const googleCalendarUrl = "https://calendar.app.google/nYGRTAwM3WYL7n2T8";
 
   // Bloqueia o scroll do fundo quando o modal está aberto
   useEffect(() => {

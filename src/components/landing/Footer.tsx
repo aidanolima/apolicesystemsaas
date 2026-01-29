@@ -102,8 +102,7 @@ const Footer = () => {
         {/* Bottom */}
         <div className="pt-8 border-t border-background/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-background/40 text-sm">
-            © {new Date().getFullYear()} Apólice System. Todos os direitos
-            reservados.
+            © {new Date().getFullYear()} Apólice System. Todos os direitos reservados a ASL Soluções Tech.
           </p>
           <div className="flex items-center gap-6">
             <a

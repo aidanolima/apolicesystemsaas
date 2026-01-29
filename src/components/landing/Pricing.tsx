@@ -4,15 +4,17 @@ import { Check, Sparkles } from "lucide-react";
 const Pricing = () => {
   const plans = [
     {
-      name: "Starter",
+      name: "Básico",
       description: "Ideal para corretores autônomos",
       price: "97",
       period: "/mês",
       features: [
         "Até 100 apólices",
+        "Até 100 clientes",
         "1 usuário",
         "Dashboard básico",
         "Upload de PDFs",
+        "Relatórios simples",
         "Suporte por email",
       ],
       cta: "Começar Agora",
@@ -24,7 +26,8 @@ const Pricing = () => {
       price: "197",
       period: "/mês",
       features: [
-        "Até 500 apólices",
+        "Até 1000 apólices",
+        "Até 1000 clientes",
         "5 usuários",
         "Dashboard completo",
         "Relatórios avançados",
@@ -36,12 +39,13 @@ const Pricing = () => {
       highlighted: true,
     },
     {
-      name: "Enterprise",
+      name: "Corporate",
       description: "Para grandes operações",
       price: "497",
       period: "/mês",
       features: [
         "Apólices ilimitadas",
+        "Clientes ilimitados",
         "Usuários ilimitados",
         "Todas as funcionalidades",
         "API de integração",
