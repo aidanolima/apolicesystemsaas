@@ -2,6 +2,13 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Shield } from "lucide-react";
 
 const CTA = () => {
+  // Link do WhatsApp com o código do país (55) e o DDD (81)
+  const whatsappLink = "https://wa.me/5581999207087?text=Olá! Gostaria de saber mais sobre o Apólice System.";
+
+  const handleWhatsAppClick = () => {
+    window.open(whatsappLink, "_blank");
+  };
+
   return (
     <section className="py-20 bg-primary">
       <div className="container mx-auto px-4">
@@ -24,17 +31,22 @@ const CTA = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            
+            {/* --- AQUI ESTÁ A ALTERAÇÃO NO BOTÃO --- */}
             <Button
               size="xl"
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 hover:scale-[1.02]"
+              onClick={handleWhatsAppClick} // Adicionado o clique
             >
               Começar Gratuitamente
               <ArrowRight className="w-5 h-5" />
             </Button>
+            
             <Button
               variant="heroOutline"
               size="xl"
               className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              onClick={handleWhatsAppClick} // Adicionei aqui também caso queira
             >
               Agendar Demonstração
             </Button>
@@ -42,7 +54,7 @@ const CTA = () => {
 
           {/* Trust Badge */}
           <p className="text-sm text-primary-foreground/60 mt-8">
-            ✓ 14 dias grátis &nbsp;&nbsp; ✓ Sem cartão de crédito &nbsp;&nbsp; ✓
+            ✓ 07 dias grátis &nbsp;&nbsp; ✓ Sem cartão de crédito &nbsp;&nbsp; ✓
             Cancele quando quiser
           </p>
         </div>

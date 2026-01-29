@@ -10,7 +10,7 @@ const FAQ = () => {
     {
       question: "Como funciona o período de teste gratuito?",
       answer:
-        "Você tem 14 dias para experimentar todas as funcionalidades do plano escolhido sem compromisso. Não é necessário cartão de crédito para começar. Após o período de teste, você pode optar por continuar com uma assinatura ou cancelar sem custos.",
+        "Você tem 07 dias para experimentar todas as funcionalidades do plano escolhido sem compromisso. Não é necessário cartão de crédito para começar. Após o período de teste, você pode optar por continuar com uma assinatura ou cancelar sem custos.",
     },
     {
       question: "Posso importar apólices de outros sistemas?",

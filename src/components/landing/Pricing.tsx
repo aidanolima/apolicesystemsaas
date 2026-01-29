@@ -66,7 +66,7 @@ const Pricing = () => {
             Planos que crescem com você
           </h2>
           <p className="text-muted-foreground">
-            Escolha o plano ideal para o seu negócio. Todos incluem 14 dias
+            Escolha o plano ideal para o seu negócio. Todos incluem 07 dias
             grátis para testar.
           </p>
         </div>

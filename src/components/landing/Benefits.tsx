@@ -2,6 +2,14 @@ import { CheckCircle, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Benefits = () => {
+  // Função para abrir o WhatsApp
+  const handleWhatsAppClick = () => {
+    window.open(
+      "https://wa.me/5581999207087?text=Olá! Gostaria de saber mais sobre o teste grátis de 07 dias do Apólice System.",
+      "_blank"
+    );
+  };
+
   const benefits = [
     {
       title: "Aumente sua produtividade",
@@ -81,11 +89,16 @@ const Benefits = () => {
           ))}
         </div>
 
-        {/* CTA */}
+        {/* CTA - Alterado aqui */}
         <div className="text-center mt-12">
-          <Button variant="hero" size="lg">
-            Experimente Grátis por 14 dias
-            <ArrowRight className="w-5 h-5" />
+          <Button 
+            variant="hero" 
+            size="lg"
+            onClick={handleWhatsAppClick} // Adicionado o evento de clique
+            className="hover:scale-105 transition-transform" // Adicionei um efeito suave ao passar o mouse
+          >
+            Experimente Grátis por 07 dias
+            <ArrowRight className="w-5 h-5 ml-2" />
           </Button>
         </div>
       </div>

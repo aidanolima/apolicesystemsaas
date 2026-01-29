@@ -12,6 +12,16 @@ const Header = () => {
     { label: "FAQ", href: "#faq" },
   ];
 
+  // Função para abrir o sistema de login
+  const handleLoginClick = () => {
+    window.open("https://seguradoraauto.netlify.app/", "_blank");
+  };
+
+  // Função para abrir o WhatsApp
+  const handleWhatsAppClick = () => {
+    window.open("https://wa.me/5581999207087", "_blank");
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4">
@@ -39,12 +49,21 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons (Desktop) */}
           <div className="hidden md:flex items-center gap-3">
-            <Button variant="ghost" size="sm">
+            {/* Botão Entrar Atualizado */}
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              onClick={handleLoginClick}
+            >
               Entrar
             </Button>
-            <Button size="sm">Começar Grátis</Button>
+            
+            {/* Botão Começar Grátis (WhatsApp) */}
+            <Button onClick={handleWhatsAppClick}>
+              Começar Grátis
+            </Button>
           </div>
 
           {/* Mobile Menu Button */}
@@ -75,10 +94,19 @@ const Header = () => {
                 </a>
               ))}
               <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                <Button variant="ghost" size="sm">
+                {/* Botão Entrar Mobile Atualizado */}
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={handleLoginClick}
+                >
                   Entrar
                 </Button>
-                <Button size="sm">Começar Grátis</Button>
+                
+                {/* Botão Começar Grátis Mobile (WhatsApp) */}
+                <Button onClick={handleWhatsAppClick}>
+                  Começar Grátis
+                </Button>
               </div>
             </nav>
           </div>

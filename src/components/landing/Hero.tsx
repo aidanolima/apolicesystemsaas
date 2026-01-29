@@ -9,6 +9,13 @@ const Hero = () => {
     "Relatórios gerenciais",
   ];
 
+  const handleWhatsAppClick = () => {
+    window.open(
+      "https://wa.me/5581999207087?text=Olá! Gostaria de saber mais sobre o Apólice System.",
+      "_blank"
+    );
+  };
+
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
       {/* Background Image */}
@@ -59,14 +66,23 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - AJUSTADOS AQUI */}
           <div className="flex flex-col sm:flex-row gap-4">
-            <Button variant="hero" size="xl">
+            <Button 
+              size="xl" // Garante altura igual ao outro botão
+              onClick={handleWhatsAppClick}
+              className="w-full sm:w-auto min-w-[200px]" // Garante largura mínima igual
+            >
               Começar Gratuitamente
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="ml-2 w-5 h-5" />
             </Button>
-            <Button variant="heroOutline" size="xl">
-              <Play className="w-5 h-5" />
+            
+            <Button 
+              variant="heroOutline" 
+              size="xl" 
+              className="w-full sm:w-auto min-w-[200px]" // Garante largura mínima igual
+            >
+              <Play className="mr-2 w-5 h-5" />
               Ver Demonstração
             </Button>
           </div>
