@@ -1,16 +1,21 @@
+import React, { useState } from "react"; // Adicionado useState
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Shield } from "lucide-react";
+import { ArrowRight, Shield, X } from "lucide-react"; // Adicionado X para fechar o modal
 
 const CTA = () => {
-  // Link do WhatsApp com o código do país (55) e o DDD (81)
+  const [isModalOpen, setIsModalOpen] = useState(false); // Estado para o modal
+
   const whatsappLink = "https://wa.me/5581999207087?text=Olá! Gostaria de saber mais sobre o Apólice System.";
+  
+  // Link da sua agenda do Google
+  const googleCalendarUrl = "https://calendar.app.google/ZJA5AViEVNkUdrzM7";
 
   const handleWhatsAppClick = () => {
     window.open(whatsappLink, "_blank");
   };
 
   return (
-    <section className="py-20 bg-primary">
+    <section className="py-20 bg-primary relative">
       <div className="container mx-auto px-4">
         <div className="max-w-3xl mx-auto text-center">
           {/* Icon */}
@@ -31,22 +36,20 @@ const CTA = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            
-            {/* --- AQUI ESTÁ A ALTERAÇÃO NO BOTÃO --- */}
             <Button
               size="xl"
               className="bg-primary-foreground text-primary hover:bg-primary-foreground/90 hover:scale-[1.02]"
-              onClick={handleWhatsAppClick} // Adicionado o clique
+              onClick={handleWhatsAppClick}
             >
               Começar Gratuitamente
-              <ArrowRight className="w-5 h-5" />
+              <ArrowRight className="w-5 h-5 ml-2" />
             </Button>
             
             <Button
               variant="heroOutline"
               size="xl"
               className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
-              onClick={handleWhatsAppClick} // Adicionei aqui também caso queira
+              onClick={() => setIsModalOpen(true)} // Abre o Modal do Google
             >
               Agendar Demonstração
             </Button>
@@ -59,6 +62,32 @@ const CTA = () => {
           </p>
         </div>
       </div>
+
+      {/* MODAL DO GOOGLE CALENDAR */}
+      {isModalOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+          <div className="bg-white w-full max-w-4xl h-[85vh] rounded-2xl overflow-hidden relative shadow-2xl animate-in fade-in zoom-in duration-300">
+            
+            {/* Header do Modal */}
+            <div className="flex justify-between items-center p-4 border-b bg-gray-50">
+              <span className="font-semibold text-gray-700">Agendar Demonstração</span>
+              <button 
+                onClick={() => setIsModalOpen(false)}
+                className="p-2 hover:bg-gray-200 rounded-full transition-colors"
+              >
+                <X className="w-6 h-6 text-gray-500" />
+              </button>
+            </div>
+
+            {/* Iframe do Calendário */}
+            <iframe 
+              src={googleCalendarUrl}
+              className="w-full h-full border-0"
+              title="Agendamento Apólice System"
+            ></iframe>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
