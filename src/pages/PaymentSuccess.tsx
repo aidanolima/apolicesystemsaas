@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Home } from "lucide-react";
+import { LogIn, CheckCircle } from "lucide-react";
 
 const PaymentSuccess = () => {
   const navigate = useNavigate();
   const [showContent, setShowContent] = useState(false);
 
-  // Efeito de entrada suave dos textos
+  // Efeito de entrada suave
   useEffect(() => {
     const timer = setTimeout(() => setShowContent(true), 800);
     return () => clearTimeout(timer);
   }, []);
+
+  const handleLoginRedirect = () => {
+    // Dica: Se quiser garantir o logout forçado, você pode limpar o storage aqui:
+    // localStorage.removeItem("sb-token"); // Exemplo se usar Supabase
+    // localStorage.clear(); 
+    
+    navigate("/login"); // Certifique-se que sua rota de login é "/login" ou "/auth"
+  };
 
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
@@ -20,7 +28,6 @@ const PaymentSuccess = () => {
         {/* --- ANIMAÇÃO DO CHECK --- */}
         <div className="flex justify-center mb-8">
           <div className="relative w-24 h-24">
-            {/* Círculo de Fundo Pulsante */}
             <div className="absolute inset-0 bg-green-100 rounded-full animate-ping opacity-75"></div>
             <div className="relative bg-[#00A86B] w-24 h-24 rounded-full flex items-center justify-center shadow-lg shadow-green-200">
               <svg 
@@ -34,59 +41,47 @@ const PaymentSuccess = () => {
                   strokeLinecap="round" 
                   strokeLinejoin="round" 
                   d="M5 13l4 4L19 7" 
-                  className="animate-draw-check" // Classe personalizada definida abaixo
+                  className="animate-draw-check" 
                 />
               </svg>
             </div>
           </div>
         </div>
 
-        {/* --- CONTEÚDO DE TEXTO --- */}
+        {/* --- CONTEÚDO --- */}
         <div className={`transition-all duration-700 ease-out transform ${showContent ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
           <h1 className="text-3xl font-bold text-gray-800 mb-2">
             Pagamento Confirmado!
           </h1>
           <p className="text-[#00A86B] font-semibold text-lg mb-6">
-            Seja bem-vindo ao Apólice System
+            Plano ativado com sucesso
           </p>
 
-          <div className="bg-gray-50 rounded-xl p-4 border border-gray-100 mb-8 text-left">
-            <p className="text-gray-600 text-sm mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              Transação finalizada com sucesso.
-            </p>
-            <p className="text-gray-600 text-sm mb-2 flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              E-mail de confirmação enviado.
-            </p>
-            <p className="text-gray-600 text-sm flex items-center gap-2">
-              <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-              Acesso liberado imediatamente.
+          {/* Card Informativo */}
+          <div className="bg-green-50 rounded-xl p-5 border border-green-100 mb-8 text-left">
+            <h3 className="text-green-800 font-bold text-sm mb-3 flex items-center gap-2">
+              <CheckCircle className="w-4 h-4" />
+              O que acontece agora?
+            </h3>
+            <p className="text-green-700 text-sm leading-relaxed">
+              Para garantir sua segurança e ativar as novas funcionalidades do seu plano, 
+              <strong> é necessário realizar o login novamente.</strong>
             </p>
           </div>
 
-          <p className="text-gray-500 text-sm mb-8 leading-relaxed">
-            Tudo pronto! Você já pode acessar seu painel e começar a transformar a gestão da sua corretora.
-          </p>
-
           <div className="space-y-3">
             <Button 
-              onClick={() => navigate("/dashboard")} // Redireciona para o painel
+              onClick={handleLoginRedirect}
               size="xl"
               className="w-full bg-[#00A86B] hover:bg-[#008f5d] text-white shadow-lg shadow-green-200/50 hover:shadow-green-200/80 transition-all text-lg h-14"
             >
-              Ir para meu Dashboard
-              <ArrowRight className="ml-2 w-5 h-5" />
+              <LogIn className="mr-2 w-5 h-5" />
+              Acessar / Fazer Login
             </Button>
-
-            <Button 
-              variant="ghost" 
-              onClick={() => navigate("/")} 
-              className="w-full text-gray-400 hover:text-gray-600"
-            >
-              <Home className="w-4 h-4 mr-2" />
-              Voltar para a Home
-            </Button>
+            
+            <p className="text-xs text-gray-400 mt-4">
+              Você será redirecionado para a tela de acesso.
+            </p>
           </div>
         </div>
         
