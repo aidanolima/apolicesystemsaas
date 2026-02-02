@@ -14,7 +14,7 @@ const Header = () => {
 
   // Função para abrir o sistema de login
   const handleLoginClick = () => {
-    window.open("https://seguradoraauto.netlify.app/", "_blank");
+    window.open("https://apolicesystem.onrender.com/index.html", "_blank");
   };
 
   // Função para abrir o WhatsApp
