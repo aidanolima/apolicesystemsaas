@@ -18,6 +18,7 @@ const Pricing = () => {
         "Suporte por email",
       ],
       cta: "Começar Agora",
+      link: "https://pay.hub.la/1GndlqMvOa2HrhD58ipI",
       highlighted: false,
     },
     {
@@ -36,6 +37,7 @@ const Pricing = () => {
         "Suporte prioritário",
       ],
       cta: "Escolher Plano",
+      link: "https://pay.hub.la/gB0vumnxcYgDd9LB20gH",
       highlighted: true,
     },
     {
@@ -54,9 +56,14 @@ const Pricing = () => {
         "SLA garantido",
       ],
       cta: "Falar com Vendas",
+      link: "https://pay.hub.la/ZfEk8oZ39jvMwKo3MiaF",
       highlighted: false,
     },
   ];
+
+  const handlePlanClick = (link: string) => {
+    window.open(link, "_blank");
+  };
 
   return (
     <section id="pricing" className="py-20 bg-card">
@@ -162,6 +169,7 @@ const Pricing = () => {
                     : ""
                 }`}
                 size="lg"
+                onClick={() => handlePlanClick(plan.link)}
               >
                 {plan.cta}
               </Button>
