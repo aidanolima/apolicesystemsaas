@@ -1,24 +1,25 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+// Removemos o useNavigate pois vamos para um link externo
 import { Button } from "@/components/ui/button";
-import { LogIn, CheckCircle } from "lucide-react";
+import { LogIn, CheckCircle, Home } from "lucide-react";
+// Import para o link interno da home, caso o usuário queira voltar
+import { useNavigate } from "react-router-dom"; 
 
 const PaymentSuccess = () => {
-  const navigate = useNavigate();
+  const navigate = useNavigate(); // Usado apenas para o botão "Voltar para Home"
   const [showContent, setShowContent] = useState(false);
 
-  // Efeito de entrada suave
+  // URL do seu sistema externo
+  const SYSTEM_LOGIN_URL = "https://apolicesystem.onrender.com/index.html";
+
   useEffect(() => {
     const timer = setTimeout(() => setShowContent(true), 800);
     return () => clearTimeout(timer);
   }, []);
 
   const handleLoginRedirect = () => {
-    // Dica: Se quiser garantir o logout forçado, você pode limpar o storage aqui:
-    // localStorage.removeItem("sb-token"); // Exemplo se usar Supabase
-    // localStorage.clear(); 
-    
-    navigate("/login"); // Certifique-se que sua rota de login é "/login" ou "/auth"
+    // Redirecionamento externo para o Render
+    window.location.href = SYSTEM_LOGIN_URL;
   };
 
   return (
@@ -61,11 +62,10 @@ const PaymentSuccess = () => {
           <div className="bg-green-50 rounded-xl p-5 border border-green-100 mb-8 text-left">
             <h3 className="text-green-800 font-bold text-sm mb-3 flex items-center gap-2">
               <CheckCircle className="w-4 h-4" />
-              O que acontece agora?
+              Próximo Passo
             </h3>
             <p className="text-green-700 text-sm leading-relaxed">
-              Para garantir sua segurança e ativar as novas funcionalidades do seu plano, 
-              <strong> é necessário realizar o login novamente.</strong>
+              Sua conta foi atualizada. Clique abaixo para acessar o sistema de gestão no ambiente seguro.
             </p>
           </div>
 
@@ -76,12 +76,17 @@ const PaymentSuccess = () => {
               className="w-full bg-[#00A86B] hover:bg-[#008f5d] text-white shadow-lg shadow-green-200/50 hover:shadow-green-200/80 transition-all text-lg h-14"
             >
               <LogIn className="mr-2 w-5 h-5" />
-              Acessar / Fazer Login
+              Acessar Sistema
             </Button>
             
-            <p className="text-xs text-gray-400 mt-4">
-              Você será redirecionado para a tela de acesso.
-            </p>
+            <Button 
+              variant="ghost" 
+              onClick={() => navigate("/")} 
+              className="w-full text-gray-400 hover:text-gray-600"
+            >
+              <Home className="w-4 h-4 mr-2" />
+              Voltar para o Site
+            </Button>
           </div>
         </div>
         
