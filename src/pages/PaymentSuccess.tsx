@@ -65,7 +65,7 @@ const PaymentSuccess = () => {
               Próximo Passo
             </h3>
             <p className="text-green-700 text-sm leading-relaxed">
-              Sua conta foi atualizada. Clique abaixo para acessar o sistema de gestão no ambiente seguro.
+              Sua conta foi criada. Em breve receberá um e-mail com instruções de acesso ao Apólice System em ambiente seguro.
             </p>
           </div>
 
