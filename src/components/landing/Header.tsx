@@ -1,12 +1,10 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Menu, X } from "lucide-react";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -20,7 +18,7 @@ const Header = () => {
     { label: "Funcionalidades", href: "#features" },
     { label: "Depoimentos", href: "#testimonials" },
     { label: "Preços", href: "#pricing" },
-    { label: "FAQ", href: "#faq" }, // Garante o link para o FAQ
+    { label: "FAQ", href: "#faq" },
   ];
 
   const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
@@ -30,6 +28,21 @@ const Header = () => {
       element.scrollIntoView({ behavior: "smooth" });
       setIsMobileMenuOpen(false);
     }
+  };
+
+  // --- FUNÇÕES DE REDIRECIONAMENTO ---
+  
+  // Função para abrir o WhatsApp
+  const handleWhatsAppClick = () => {
+    window.open(
+      "https://wa.me/5581999207087?text=Olá! Gostaria de começar gratuitamente no Apólice System.",
+      "_blank"
+    );
+  };
+
+  // Função para o Login Externo
+  const handleLoginClick = () => {
+    window.location.href = "https://apolicesystem.onrender.com/index.html";
   };
 
   return (
@@ -45,7 +58,7 @@ const Header = () => {
           <div className="w-10 h-10 rounded-xl bg-[#00A86B] flex items-center justify-center shadow-sm">
             <Shield className="w-6 h-6 text-white" />
           </div>
-          <span className={`font-bold text-xl ${isScrolled ? "text-gray-900" : "text-gray-900"}`}>
+          <span className="font-bold text-xl text-gray-900">
             Apólice System
           </span>
         </div>
@@ -64,21 +77,18 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Auth Buttons */}
+        {/* Botões de Ação (Atualizados) */}
         <div className="hidden md:flex items-center gap-4">
           <Button 
             variant="ghost" 
             className="text-gray-900 hover:text-[#00A86B]"
-            onClick={() => navigate("/login")}
+            onClick={handleLoginClick} // Redireciona para o Render
           >
             Entrar
           </Button>
           <Button 
             className="bg-[#00A86B] hover:bg-[#008f5d] text-white font-medium px-6"
-            onClick={() => {
-                const element = document.querySelector("#pricing");
-                if(element) element.scrollIntoView({ behavior: "smooth" });
-            }}
+            onClick={handleWhatsAppClick} // Abre o WhatsApp
           >
             Começar Grátis
           </Button>
@@ -107,8 +117,8 @@ const Header = () => {
             </a>
           ))}
           <div className="flex flex-col gap-2 mt-2 border-t pt-4">
-            <Button variant="ghost" onClick={() => navigate("/login")}>Entrar</Button>
-            <Button className="bg-[#00A86B] text-white">Começar Grátis</Button>
+            <Button variant="ghost" onClick={handleLoginClick}>Entrar</Button>
+            <Button className="bg-[#00A86B] text-white" onClick={handleWhatsAppClick}>Começar Grátis</Button>
           </div>
         </div>
       )}
