@@ -1,8 +1,12 @@
+import { useState } from "react"; // Importar useState
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, CheckCircle } from "lucide-react";
+import { ArrowRight, Play, CheckCircle, X } from "lucide-react"; // Importar X
 import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
+  // Estado para controlar a visibilidade do vídeo
+  const [isVideoOpen, setIsVideoOpen] = useState(false);
+
   const features = [
     "Dashboard intuitivo",
     "Gestão de apólices",
@@ -15,6 +19,9 @@ const Hero = () => {
       "_blank"
     );
   };
+
+  // ID do vídeo extraído do link que você enviou
+  const videoId = "27db2lvM4iY"; 
 
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
@@ -66,12 +73,12 @@ const Hero = () => {
             ))}
           </div>
 
-          {/* CTA Buttons - AJUSTADOS AQUI */}
+          {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4">
             <Button 
-              size="xl" // Garante altura igual ao outro botão
+              size="xl" 
               onClick={handleWhatsAppClick}
-              className="w-full sm:w-auto min-w-[200px]" // Garante largura mínima igual
+              className="w-full sm:w-auto min-w-[200px]"
             >
               Começar Gratuitamente
               <ArrowRight className="ml-2 w-5 h-5" />
@@ -80,15 +87,48 @@ const Hero = () => {
             <Button 
               variant="heroOutline" 
               size="xl" 
-              className="w-full sm:w-auto min-w-[200px]" // Garante largura mínima igual
+              className="w-full sm:w-auto min-w-[200px]"
+              onClick={() => setIsVideoOpen(true)} // Abre o Modal
             >
               <Play className="mr-2 w-5 h-5" />
               Ver Demonstração
             </Button>
           </div>
-
         </div>
       </div>
+
+      {/* --- MODAL DE VÍDEO --- */}
+      {isVideoOpen && (
+        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/90 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+          
+          {/* Fundo clicável para fechar */}
+          <div 
+            className="absolute inset-0" 
+            onClick={() => setIsVideoOpen(false)}
+          ></div>
+
+          {/* Botão Fechar (X) Flutuante */}
+          <button 
+            onClick={() => setIsVideoOpen(false)}
+            className="absolute top-6 right-6 p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-all z-[110]"
+          >
+            <X className="w-10 h-10" />
+          </button>
+
+          {/* Container do Vídeo (Aspect Ratio 16:9) */}
+          <div className="relative w-full max-w-5xl aspect-video bg-black rounded-2xl overflow-hidden shadow-2xl z-10 animate-in zoom-in-95 duration-300">
+            <iframe
+              width="100%"
+              height="100%"
+              src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`}
+              title="Demonstração Apólice System"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </section>
   );
 };
