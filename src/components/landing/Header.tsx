@@ -1,117 +1,117 @@
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Shield, Menu, X } from "lucide-react";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const navLinks = [
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navItems = [
     { label: "Funcionalidades", href: "#features" },
-    { label: "Benefícios", href: "#benefits" },
+    { label: "Depoimentos", href: "#testimonials" },
     { label: "Preços", href: "#pricing" },
-    { label: "FAQ", href: "#faq" },
+    { label: "FAQ", href: "#faq" }, // Garante o link para o FAQ
   ];
 
-  // Função para abrir o sistema de login
-  const handleLoginClick = () => {
-    window.open("https://apolicesystem.onrender.com/index.html", "_blank");
-  };
-
-  // Função para abrir o WhatsApp
-  const handleWhatsAppClick = () => {
-    window.open("https://wa.me/5581999207087", "_blank");
+  const handleScrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setIsMobileMenuOpen(false);
+    }
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-lg border-b border-border">
-      <div className="container mx-auto px-4">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center">
-              <Shield className="w-6 h-6 text-primary-foreground" />
-            </div>
-            <span className="font-semibold text-lg text-foreground">
-              Apólice System
-            </span>
-          </a>
-
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-              >
-                {link.label}
-              </a>
-            ))}
-          </nav>
-
-          {/* CTA Buttons (Desktop) */}
-          <div className="hidden md:flex items-center gap-3">
-            {/* Botão Entrar Atualizado */}
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              onClick={handleLoginClick}
-            >
-              Entrar
-            </Button>
-            
-            {/* Botão Começar Grátis (WhatsApp) */}
-            <Button onClick={handleWhatsAppClick}>
-              Começar Grátis
-            </Button>
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled ? "bg-white/80 backdrop-blur-md shadow-sm py-4" : "bg-transparent py-6"
+      }`}
+    >
+      <div className="container mx-auto px-4 flex items-center justify-between">
+        
+        {/* Logo com Destaque Visual Mantido */}
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+          <div className="w-10 h-10 rounded-xl bg-[#00A86B] flex items-center justify-center shadow-sm">
+            <Shield className="w-6 h-6 text-white" />
           </div>
-
-          {/* Mobile Menu Button */}
-          <button
-            className="md:hidden p-2"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? (
-              <X className="w-6 h-6 text-foreground" />
-            ) : (
-              <Menu className="w-6 h-6 text-foreground" />
-            )}
-          </button>
+          <span className={`font-bold text-xl ${isScrolled ? "text-gray-900" : "text-gray-900"}`}>
+            Apólice System
+          </span>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
-            <nav className="flex flex-col gap-4">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="text-muted-foreground hover:text-foreground transition-colors text-sm font-medium"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              <div className="flex flex-col gap-2 pt-4 border-t border-border">
-                {/* Botão Entrar Mobile Atualizado */}
-                <Button 
-                  variant="ghost" 
-                  size="sm" 
-                  onClick={handleLoginClick}
-                >
-                  Entrar
-                </Button>
-                
-                {/* Botão Começar Grátis Mobile (WhatsApp) */}
-                <Button onClick={handleWhatsAppClick}>
-                  Começar Grátis
-                </Button>
-              </div>
-            </nav>
-          </div>
-        )}
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-8">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleScrollTo(e, item.href)}
+              className="text-sm font-medium text-gray-600 hover:text-[#00A86B] transition-colors"
+            >
+              {item.label}
+            </a>
+          ))}
+        </nav>
+
+        {/* Auth Buttons */}
+        <div className="hidden md:flex items-center gap-4">
+          <Button 
+            variant="ghost" 
+            className="text-gray-900 hover:text-[#00A86B]"
+            onClick={() => navigate("/login")}
+          >
+            Entrar
+          </Button>
+          <Button 
+            className="bg-[#00A86B] hover:bg-[#008f5d] text-white font-medium px-6"
+            onClick={() => {
+                const element = document.querySelector("#pricing");
+                if(element) element.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Começar Grátis
+          </Button>
+        </div>
+
+        {/* Mobile Menu Toggle */}
+        <button 
+          className="md:hidden p-2 text-gray-700"
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        >
+          {isMobileMenuOpen ? <X /> : <Menu />}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div className="absolute top-full left-0 right-0 bg-white border-t border-gray-100 p-4 md:hidden shadow-lg flex flex-col gap-4 animate-in slide-in-from-top-5">
+          {navItems.map((item) => (
+            <a
+              key={item.label}
+              href={item.href}
+              onClick={(e) => handleScrollTo(e, item.href)}
+              className="text-gray-600 font-medium py-2 hover:text-[#00A86B]"
+            >
+              {item.label}
+            </a>
+          ))}
+          <div className="flex flex-col gap-2 mt-2 border-t pt-4">
+            <Button variant="ghost" onClick={() => navigate("/login")}>Entrar</Button>
+            <Button className="bg-[#00A86B] text-white">Começar Grátis</Button>
+          </div>
+        </div>
+      )}
     </header>
   );
 };

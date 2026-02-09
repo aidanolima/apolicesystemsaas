@@ -55,7 +55,7 @@ const Pricing = () => {
         "Gerente de conta",
         "SLA garantido",
       ],
-      cta: "Falar com Vendas",
+      cta: "Contrate Agora",
       link: "https://mpago.la/2QZMBFa",
       highlighted: false,
     },
