@@ -85,14 +85,20 @@ const Hero = () => {
             </Button>
             
             <Button 
-              variant="heroOutline" 
-              size="xl" 
-              className="w-full sm:w-auto min-w-[200px]"
-              onClick={() => setIsVideoOpen(true)} // Abre o Modal
-            >
-              <Play className="mr-2 w-5 h-5" />
-              Ver Demonstração
-            </Button>
+  variant="heroOutline" 
+  size="xl" 
+  className="w-full sm:w-auto min-w-[200px]"
+  onClick={() => {
+    // Dispara evento de "Visualização de Conteúdo" para quem clicou no vídeo
+    if (typeof window !== 'undefined' && (window as any).fbq) {
+      (window as any).fbq('trackCustom', 'VerDemonstracao'); 
+    }
+    setIsVideoOpen(true); // Abre o Modal original
+  }}
+>
+  <Play className="mr-2 w-5 h-5" />
+  Ver Demonstração
+</Button>
           </div>
         </div>
       </div>
