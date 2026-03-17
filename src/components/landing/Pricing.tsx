@@ -56,7 +56,7 @@ const Pricing = () => {
         "SLA garantido",
       ],
       cta: "Contrate Agora",
-      link: "https://mpago.la/2QZMBFa",
+      link: "https://mpago.li/2kiEEYX",
       highlighted: false,
     },
   ];
