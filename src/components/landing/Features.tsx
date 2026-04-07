@@ -42,7 +42,7 @@ const Features = () => {
             Funcionalidades
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-4">
-            Tudo o que sua corretora precisa
+            Tudo o que um corretor de seguros moderno precisa
           </h2>
           <p className="text-gray-500 text-lg">
             Ferramentas poderosas desenhadas especificamente para o dia a dia do corretor de seguros moderno.
