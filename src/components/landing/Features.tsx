@@ -126,16 +126,14 @@ const Features = () => {
               Interface Simples e Intuitiva
             </h2>
             <p className="text-gray-500 text-lg">
-              Navegue pelas telas da nossa plataforma e veja como é fácil gerenciar seus clientes e apólices.
+              Navegue pelas telas da nossa plataforma e veja como é fácil gerenciar sua corretora.
             </p>
           </div>
 
           {/* Carrossel Principal */}
           <div className="max-w-5xl mx-auto relative group">
             
-            {/* Alterado: Usando tag <img /> ao invés de background image para 
-              garantir que não haja espaços vazios no topo ou laterais.
-            */}
+            {/* Container da Imagem */}
             <div className="relative overflow-hidden rounded-2xl shadow-2xl bg-white border border-gray-200 flex items-center justify-center">
               
               <img
@@ -144,32 +142,32 @@ const Features = () => {
                 className="w-full h-auto object-contain transition-opacity duration-500 ease-in-out"
               />
 
-              {/* Overlay com Título da Tela (Centralizado) */}
-              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-16">
+              {/* Overlay com Título da Tela */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-16 pointer-events-none">
                 <h3 className="text-white text-xl md:text-2xl font-bold drop-shadow-lg text-center">
                   {systemScreens[currentIndex].title}
                 </h3>
               </div>
 
+              {/* Botão Voltar - Agora dentro do container da imagem para alinhamento perfeito */}
+              <button
+                onClick={prevSlide}
+                className="absolute top-1/2 -translate-y-1/2 left-4 text-2xl rounded-full p-2 bg-white/90 hover:bg-white text-gray-800 shadow-lg cursor-pointer transition-all hover:scale-110 z-10"
+                aria-label="Tela anterior"
+              >
+                <ChevronLeft size={24} />
+              </button>
+
+              {/* Botão Avançar - Agora dentro do container da imagem para alinhamento perfeito */}
+              <button
+                onClick={nextSlide}
+                className="absolute top-1/2 -translate-y-1/2 right-4 text-2xl rounded-full p-2 bg-white/90 hover:bg-white text-gray-800 shadow-lg cursor-pointer transition-all hover:scale-110 z-10"
+                aria-label="Próxima tela"
+              >
+                <ChevronRight size={24} />
+              </button>
+
             </div>
-
-            {/* Botão Voltar */}
-            <button
-              onClick={prevSlide}
-              className="absolute top-[50%] -translate-y-[-50%] left-4 text-2xl rounded-full p-2 bg-white/90 hover:bg-white text-gray-800 shadow-lg cursor-pointer transition-all hover:scale-110"
-              aria-label="Tela anterior"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            {/* Botão Avançar */}
-            <button
-              onClick={nextSlide}
-              className="absolute top-[50%] -translate-y-[-50%] right-4 text-2xl rounded-full p-2 bg-white/90 hover:bg-white text-gray-800 shadow-lg cursor-pointer transition-all hover:scale-110"
-              aria-label="Próxima tela"
-            >
-              <ChevronRight size={24} />
-            </button>
 
             {/* Indicadores (Dots) abaixo do carrossel */}
             <div className="flex flex-wrap justify-center py-4 gap-2 mt-4">
