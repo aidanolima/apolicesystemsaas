@@ -21,7 +21,7 @@ const Hero = () => {
   };
 
   // ID do vídeo extraído do link que você enviou
-  const videoId = "1zOtuRRXBqg"; //x6AsQrnkgss outro vídeo
+  const videoId = "i74sGXHWwcA"; //x6AsQrnkgss outro vídeo
 
   return (
     <section className="relative min-h-screen flex items-center pt-16 overflow-hidden">
